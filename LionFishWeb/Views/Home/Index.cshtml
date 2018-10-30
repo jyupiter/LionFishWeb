@@ -1,31 +1,80 @@
-﻿@{
+﻿@model LionFishWeb.Models.User
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<main>
+    <section id="logsign">
+        <div id="block-sign" class="block-logsign">
+            <h1>Get started with a new account<span style="color:#EDA831;">.</span></h1>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "input-sign-email", @class = "input-email", placeholder = "Email address" } })
+                </div>
+                <div class="block-password">
+                    @Html.PasswordFor(model => model.PassHash, new { id = "input-sign-password", @class = "input-password", placeholder = "Password (min. 10 characters)" })
+                    <div class="show-password hide">Show</div>
+                </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+                <div>
+                    <input formaction=@Url.Action("SignUp") formmethod="post" type="submit" id="submit-sign" class="button-blue" value="Sign up">
+                    <input type="submit" value="Alternative">
+                </div>
+            }
+        </div>
+        <div id="block-log" class="block-logsign">
+            <h1>Existing user? Log in<span style="color:#EDA831;">.</span></h1>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "input-log-email", @class = "input-email", placeholder = "Email address" } })
+                </div>
+                <div class="block-password">
+                    @Html.PasswordFor(model => model.PassHash, new { id = "input-log-password", @class = "input-password", placeholder = "Password" })
+                    <div class="show-password hide">Show</div>
+                </div>
+
+                <div>
+                    <input formaction=@Url.Action("SignUp") formmethod="post" type="submit" id="submit-log" class="button-black" value="Log in">
+                    <input type="submit" value="Forgot password">
+                </div>
+            }
+        </div>
+    </section>
+    <section id="huge">
+        <h1>Organize your life<span style="color:#EDA831;">.</span></h1>
+        <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <a class="button button-black getstarted">Get started</a>
+    </section>
+    <section class="move">
+        <img src="https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png" />
+        <h2>Hello, world!</h2>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <a class="button" asp-page="/Index">Action</a>
+    </section>
+    <section class="move">
+        <img src="https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png" />
+        <h2>Hello, world!</h2>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <a class="button" asp-page="/Index">Action</a>
+    </section>
+    <section class="move">
+        <img src="https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png" />
+        <h2>Hello, world!</h2>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <a class="button" asp-page="/Index">Action</a>
+    </section>
+    <section class="move">
+        <img src="https://www.logistec.com/wp-content/uploads/2017/12/placeholder.png" />
+        <h2>Hello, world!</h2>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <a class="button" asp-page="/Index">Action</a>
+    </section>
+    <footer class="move" style="height:160px;background:#000;float:left;clear:both;"></footer>
+</main>

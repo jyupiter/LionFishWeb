@@ -15,8 +15,23 @@ namespace LionFishWeb.Controllers
             return View();
         }
 
+        public ActionResult About()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
+        public ActionResult Landing()
+        {
+            return View();
+        }
+
         [HttpPost][ValidateAntiForgeryToken]
-        public ActionResult SignUp(User user)
+        public ActionResult SignUp([Bind(Include = "Email, Pass")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -30,27 +45,16 @@ namespace LionFishWeb.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogIn(User user)
+        public ActionResult LogIn([Bind(Include = "Email, Pass")] User user)
         {
             if (ModelState.IsValid)
             {
-                Debug.WriteLine(user.Email);
-                return View("Index"/*, "user"*/);
+                return View("Index", "user");
             }
             else
             {
                 return View("Index");
             }
-        }
-
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
         }
     }
 }

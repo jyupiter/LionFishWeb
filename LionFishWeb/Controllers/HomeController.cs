@@ -1,6 +1,8 @@
 ﻿using LionFishWeb.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -35,7 +37,7 @@ namespace LionFishWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("Landing", user);
+                return View("ConfirmEmail", user);
             }
             else
             {
@@ -49,7 +51,7 @@ namespace LionFishWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("Index", "user");
+                return View("Landing", "user");
             }
             else
             {

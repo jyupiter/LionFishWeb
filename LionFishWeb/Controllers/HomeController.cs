@@ -1,6 +1,8 @@
 ﻿using LionFishWeb.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
@@ -25,22 +27,35 @@ namespace LionFishWeb.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SignUp([Bind(Include = "Email, PassHash")] User user)
+        public ActionResult Landing()
+        {
+            return View();
+        }
+
+        [HttpPost][ValidateAntiForgeryToken]
+        public ActionResult SignUp([Bind(Include = "Email, Pass")] User user)
         {
             if (ModelState.IsValid)
             {
-                Debug.WriteLine("AAAAAAAAAA2");
+                return View("ConfirmEmail", user);
             }
-
-            try
+            else
             {
                 return View("Index");
             }
-            catch
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogIn([Bind(Include = "Email, Pass")] User user)
+        {
+            if (ModelState.IsValid)
             {
-                return View();
+                return View("Landing", "user");
+            }
+            else
+            {
+                return View("Index");
             }
         }
     }

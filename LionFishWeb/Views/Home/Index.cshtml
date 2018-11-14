@@ -14,9 +14,10 @@
                 @Html.AntiForgeryToken()
                 <div>
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "input-sign-email", @class = "input-email", placeholder = "Email address" } })
+                    @Html.ValidationMessageFor(model => model.Email)
                 </div>
                 <div class="block-password">
-                    @Html.PasswordFor(model => model.PassHash, new { id = "input-sign-password", @class = "input-password", placeholder = "Password (min. 10 characters)" })
+                    @Html.PasswordFor(model => model.Pass, new { id = "input-sign-password", @class = "input-password", placeholder = "Password (min. 10 characters)" })
                     <div class="show-password hide">Show</div>
                 </div>
 
@@ -36,12 +37,12 @@
                     @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "input-log-email", @class = "input-email", placeholder = "Email address" } })
                 </div>
                 <div class="block-password">
-                    @Html.PasswordFor(model => model.PassHash, new { id = "input-log-password", @class = "input-password", placeholder = "Password" })
+                    @Html.PasswordFor(model => model.Pass, new { id = "input-log-password", @class = "input-password", placeholder = "Password" })
                     <div class="show-password hide">Show</div>
                 </div>
 
                 <div>
-                    <input formaction=@Url.Action("SignUp") formmethod="post" type="submit" id="submit-log" class="button-black" value="Log in">
+                    <input formaction=@Url.Action("LogIn") formmethod="post" type="submit" id="submit-log" class="button-black" value="Log in">
                     <input type="submit" value="Forgot password">
                 </div>
             }

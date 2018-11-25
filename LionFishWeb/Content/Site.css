@@ -9,6 +9,7 @@
 body {
     margin: 0 auto;
     font-family: Calibri, Arial, Helvetica, sans-serif;
+    background: #f9f9f9;
 }
 
 a, a:hover, a:visited, a:target {
@@ -40,6 +41,7 @@ p {
 
 main {
     margin-top:56px;
+    min-height:calc(100vh - 231px);
 }
 
 img {
@@ -57,7 +59,28 @@ img {
 
 /* Buttons */
 
-.button, input[type="submit"] {
+.button {
+    display: inline-block;
+    color: #fff;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+}
+
+.button:hover {
+    background:#555;
+}
+
+input[type="submit"] {
     display: inline-block;
     color: #000;
     font-family: Calibri, Arial, Helvetica, sans-serif;
@@ -74,7 +97,7 @@ img {
     -o-transition: all 0.2s ease-in-out;
 }
 
-.button:hover, input[type="submit"]:hover {
+input[type="submit"]:hover {
     background:#d5d5d5;
 }
 
@@ -131,7 +154,7 @@ input[type="submit"] {
     left: 0;
     width: 100vw;
     height: 56px;
-    background: #fff;
+    background: black;
     z-index: 99999;
     padding: 15px 25px;
     border-bottom: 1px solid #e8e8e8;
@@ -141,17 +164,13 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-.sitenavflip {
-    background: black!important;
-}
-
 #lionfish {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
     font-weight: bold;
     line-height: 1em;
     vertical-align: middle;
-    color: blue;
+    color: #fff;
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
@@ -159,6 +178,7 @@ input[type="submit"] {
 }
 
 #lionfish:after {
+    content:'.';
     position: absolute;
     bottom: 15px;
     font-family: Arial, Helvetica, sans-serif;
@@ -167,10 +187,6 @@ input[type="submit"] {
     line-height: 1em;
     vertical-align: middle;
     color: #EDA831;
-}
-
-.lionfishflip {
-    color: #fff!important;
 }
 
 #snb {
@@ -186,11 +202,7 @@ input[type="submit"] {
 /* Index/login page */
 
 section {
-    padding: 35px 25px;
-}
-
-section:not(#huge) p {
-    line-height:1.4em;
+    padding: 35px;
 }
 
 section .button {
@@ -200,19 +212,47 @@ section .button {
     margin: 10px 5px 0 0;
 }
 
-section img {
-    width:100%;
+.move {
+    position: relative;
+    height: auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    margin: 55px;
+    border-radius: 15px;
+    overflow: auto;
+}
+
+.move img {
+    float:left;
+    max-width:230px;
     height:auto;
-    margin:0 0 10px 0;
-    border-radius: 4px;
+    border-radius: 15px;
+}
+
+.move img + div {
+    float:left;
+    margin:0 0 0 35px;
+    max-width:calc(100% - 265px);
+}
+
+.move h2 {
+    font-size:34px;
+}
+
+.move p {
+    line-height:1.4em;
+    font-size:24px;
 }
 
 #huge {
-    background: #ffeabc;
-    background: -moz-linear-gradient(-45deg, #ffeabc 0%, #d8d8ff 100%);
-    background: -webkit-linear-gradient(-45deg, #ffeabc 0%,#d8d8ff 100%);
-    background: linear-gradient(135deg, #ffeabc 0%,#d8d8ff 100%);
-    padding: 100px 25px 25px 25px;
+    background: rgba(216,226,243,1);
+    background: -moz-linear-gradient(45deg, rgba(216,226,243,1) 0%, rgba(255,242,204,1) 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(216,226,243,1)), color-stop(100%, rgba(255,242,204,1)));
+    background: -webkit-linear-gradient(45deg, rgba(216,226,243,1) 0%, rgba(255,242,204,1) 100%);
+    background: -o-linear-gradient(45deg, rgba(216,226,243,1) 0%, rgba(255,242,204,1) 100%);
+    background: linear-gradient(45deg, rgba(216,226,243,1) 0%, rgba(255,242,204,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d8e2f3', endColorstr='#fff2cc', GradientType=1 );
+    padding: 30vh 25px 50px 25px;
+    margin-bottom: 25px;
 }
 
 #huge h1 {
@@ -221,16 +261,12 @@ section img {
 
 #huge p {
     font-size:30px;
+    max-width:800px;
 }
 
-.move {
-    float:left;
-    width:25%;
-}
-
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1000px) {
     #huge {
-        padding: 125px 25px 25px 25px;
+        padding: 25vh 25px 50px 25px;
     }
 
     #huge h1 {
@@ -242,13 +278,24 @@ section img {
     }
 
     .move {
-        width: 50%;
+        margin: 25px;
+        border-radius: 15px;
+        overflow: auto;
     }
+
+     .move h2 {
+        font-size: 28px;
+     }
+
+     .move p {
+         line-height: 1.4em;
+         font-size: 20px;
+     }
 }
 
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 675px) {
     #huge {
-        padding: 75px 25px 25px 25px;
+        padding: 20vh 25px 25px 25px;
     }
 
     #huge h1 {
@@ -260,8 +307,47 @@ section img {
     }
 
     .move {
-        width:100%;
+        box-shadow:0 0 0 transparent;
+        border-bottom:1px solid #dfdfdf;
+        border-radius:0;
+        margin: 40px 20px;
+        padding: 0 20px 40px 20px;
     }
+
+    .move:nth-child(n-1) {
+        border-bottom:none;
+        padding: 0 20px 10px 20px;
+    }
+
+    .move img {
+        float: left;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .move img + div {
+        float: left;
+        margin: 20px 0 0 0;
+        max-width: 100%;
+    }
+
+    .move h2 {
+        font-size: 28px;
+    }
+
+    .move p {
+        font-size: 20px;
+    }
+}
+
+footer {
+    bottom:0;
+    margin-top: 55px;
+    width: 100%;
+    height: 120px;
+    background: #000;
+    box-shadow: 0 -5px 0 #000;
+    border-top: 5px solid #fff;
 }
 
 /* Login */
@@ -269,27 +355,40 @@ section img {
 #logsign {
     display:none;
     position: fixed;
-    background: #fff;
+    background: #f9f9f9;
     width: 100%;
     height: 100%;
     top: 56px;
     bottom: 0;
     left: 0;
     right: 0;
+    padding: 35px 0 0 35px;
     overflow:scroll;
 }
 
 .block-logsign {
-    min-width: 300px;
-    max-width: 350px;
+    min-width: 330px;
+    max-width: 335px;
     margin: 0 0 50px 0;
 }
 
-input[type=text], input[type=password], select {
-    width: 100%;
+.ungriddy, .griddy {
+    float: left;
+}
+
+.griddy {
+    background:#d5d5d5;
+    height:calc(100% + 35px);
+    margin:-35px 0 0 35px;
+    width: calc(100% - 370px);
+}
+
+input[type=text], input[type=email], input[type=password], select {
+    width: 100% !important;
     padding: 10px 18px;
     margin: 7px 0;
     display: inline-block;
+    background: #f4f4f4;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -309,7 +408,7 @@ input[type=text], input[type=password], select {
     cursor: pointer;
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 1200px) {
 }
 
 @media screen and (max-width: 575px) {
@@ -320,4 +419,29 @@ input[type=text], input[type=password], select {
 
 .error {
     color:indianred;
+}
+
+/* Landing */
+
+.block-center {
+    position: fixed;
+    background: #f9f9f9;
+    width: 100%;
+    margin: 0 0 50px 0;
+    height: 100%;
+    top: 56px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 35px 0 0 35px;
+    overflow: scroll;
+}
+
+#conf-email {
+    max-width:330px;
+}
+
+#conf-email img {
+    max-width:100%;
+    height:auto;
 }

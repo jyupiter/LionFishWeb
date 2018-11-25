@@ -13,7 +13,10 @@ namespace LionFishWeb.Repositories
         bool DeleteUserByID(int userid);
         bool DeleteUserByEmail(string email);
 
+        bool CheckUserByEmail(string email);
+
         User GetUserByID(int userid);
+        User GetUserByEmail(string email);
         List<User> GetUsersByGroup(int groupid);
     }
 }

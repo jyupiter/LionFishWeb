@@ -1,15 +1,8 @@
 ﻿$(function () {
-    $("section:not(#logsign)").toggle();
-    $("#logsign").toggle();
 
     $(".getstarted").on("click", function () {
         $("section:not(#logsign)").toggle();
         $("#logsign").toggle();
-        $("#sitenav").toggleClass("sitenavflip");
-        $("#lionfish").toggleClass("lionfishflip");
-        $("#snb a:not(last-child)").toggleClass("button-black");
-        $("#snb a:last-child").toggleClass("button-blue");
-        $("#snb a:last-child").toggleClass("button-blue");
         if ($("#snb a:last-child").text() === "get started")
             $("#snb a:last-child").text("back to home");
         else
@@ -50,7 +43,5 @@
             x.prop("type", "password");
         }
     });
-
-    $("#submit-password")
 
 });

@@ -7,9 +7,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using LionFishWeb.Repositories;
 
 namespace LionFishWeb.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -37,26 +39,33 @@ namespace LionFishWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                return View("ConfirmEmail", user);
+                IUserRepo ur = new UserRepo();
+                if(!ur.CheckUserByEmail(user.Email))
+                {
+                    ur.AddUser(new User(user.Email, user.Pass));
+                    return View("ConfirmEmail", user);
+                }
+                else
+                    return View("Index");
             }
             else
-            {
                 return View("Index");
-            }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost][ValidateAntiForgeryToken]
         public ActionResult LogIn([Bind(Include = "Email, Pass")] User user)
         {
             if (ModelState.IsValid)
             {
-                return View("Landing", "user");
+                IUserRepo ur = new UserRepo();
+                bool success = user.AuthUser(ur.GetUserByEmail(user.Email), user.Pass);
+                if (success)
+                    return View("Landing", user);
+                else
+                    return View("Index");
             }
             else
-            {
                 return View("Index");
-            }
         }
     }
 }

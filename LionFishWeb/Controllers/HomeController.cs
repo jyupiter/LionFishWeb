@@ -1,13 +1,11 @@
 ﻿using LionFishWeb.Models;
-using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using LionFishWeb.Repositories;
+using LionFishWeb.Utility;
+using System.Net;
+using System.Net.Mail;
+using System;
+using System.Threading.Tasks;
 
 namespace LionFishWeb.Controllers
 {
@@ -29,13 +27,8 @@ namespace LionFishWeb.Controllers
             return View();
         }
 
-        public ActionResult Landing()
-        {
-            return View();
-        }
-
         [HttpPost][ValidateAntiForgeryToken]
-        public ActionResult SignUp([Bind(Include = "Email, Pass")] User user)
+        public async Task<ActionResult> SignUpAsync([Bind(Include = "Email, Pass")] User user)
         {
             if (ModelState.IsValid)
             {
@@ -43,7 +36,17 @@ namespace LionFishWeb.Controllers
                 if(!ur.CheckUserByEmail(user.Email))
                 {
                     ur.AddUser(new User(user.Email, user.Pass));
-                    return View("ConfirmEmail", user);
+                    IConfirmationCodeRepo cr = new ConfirmationCodeRepo();
+                    ConfirmationCode cc;
+                    if (!cr.CheckConfirmationCodeByEmail(user.Email))
+                    {
+                        cc = new ConfirmationCode(user.Email);
+                        cr.AddConfirmationCode(cc);
+                        await EmailSender.Execute(user.Email, cc.Code);
+                    }
+                    else
+                        cc = cr.GetConfirmationCode(user.Email);
+                    return View("~/Views/User/ConfirmEmail.cshtml", cc);
                 }
                 else
                     return View("Index");
@@ -58,11 +61,23 @@ namespace LionFishWeb.Controllers
             if (ModelState.IsValid)
             {
                 IUserRepo ur = new UserRepo();
-                bool success = user.AuthUser(ur.GetUserByEmail(user.Email), user.Pass);
-                if (success)
-                    return View("Landing", user);
-                else
-                    return View("Index");
+                if (ur.CheckUserByEmail(user.Email))
+                {
+                    if(!ur.GetUserByEmail(user.Email).IsConfirmed) {
+                        IConfirmationCodeRepo cr = new ConfirmationCodeRepo();
+                        ConfirmationCode cc = cr.GetConfirmationCode(user.Email);
+                        return View("~/Views/User/ConfirmEmail.cshtml", cc);
+                    }
+                    else
+                    {
+                        bool success = user.AuthUser(ur.GetUserByEmail(user.Email), user.Pass);
+                        if (success)
+                            return View("~/Views/User/Landing.cshtml", user);
+                        else
+                            return View("Index");
+                    }
+                }
+                return View("Index");
             }
             else
                 return View("Index");

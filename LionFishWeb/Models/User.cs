@@ -2,10 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Web;
+using System.IO;
 
 namespace LionFishWeb.Models
 {
@@ -62,6 +60,13 @@ namespace LionFishWeb.Models
                 e.ToString();
                 return false;
             }
+        }
+
+        public bool GoodPass(int strength)
+        {
+            if (strength > 1)
+                return true;
+            return false;
         }
 
         public bool AuthUser(User user, string test)

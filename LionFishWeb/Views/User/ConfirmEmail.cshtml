@@ -1,0 +1,39 @@
+﻿@model LionFishWeb.Models.ConfirmationCode
+
+@{
+    ViewBag.Title = "Confirm Email";
+}
+
+<main>
+    <section class="block-center">
+        <div class="ungriddy">
+            <div id="conf-email">
+                <img src="https://www.idealpath.com/images/benchmark-email-ctr-industry-building.png" />
+                <h2>You're almost done.</h2>
+                <p>A confirmation email has been sent to @Model.Email. It may take a few minutes to send. If you can't find it, try looking in your spam folder.</p>
+                @using (Html.BeginForm("SubmitCode", "User", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div>
+                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { id = "input-cc", @class = "", placeholder = "Confirmation code", @Value = "" } })
+                        @Html.TextBoxFor(model => model.Email, new { style = "display:none", @Value = Model.Email })
+                    </div>
+                    <div>
+                        <input type="submit" id="submit-code" class="button-blue" value="Submit">
+                    </div>
+                }
+                @using (Html.BeginForm("ResendCode", "User", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div>
+                        @Html.TextBoxFor(model => model.Email, new { style = "display:none", @Value = Model.Email })
+                    </div>
+                    <div>
+                        <input type="submit" id="resend-code" class="button-black" value="Resend">
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="griddy"></div>
+    </section>
+</main>

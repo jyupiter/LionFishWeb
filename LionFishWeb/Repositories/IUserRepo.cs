@@ -18,5 +18,7 @@ namespace LionFishWeb.Repositories
         User GetUserByID(int userid);
         User GetUserByEmail(string email);
         List<User> GetUsersByGroup(int groupid);
+
+        bool UpdateUser(User user);
     }
 }

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Diagnostics;
-using System.Linq;
-using System.Web;
 using LionFishWeb.Models;
 using LionFishWeb.Utility;
 using MySql.Data.MySqlClient;
-using System.Security.Cryptography;
 
 namespace LionFishWeb.Repositories
 {
@@ -19,14 +14,14 @@ namespace LionFishWeb.Repositories
             if (user.IsConfirmed) conv = 1;
             else conv = 0;
 
-            string query = "insert into user(email, pass, displayname, ispublic) values (@email, @pass, @displayname, @ispublic)";
+            string query = "insert into user(email, pass, displayname, isconfirmed) values (@email, @pass, @displayname, @isconfirmed)";
             using (MySqlConnection connection = new MySqlConnection(Constants.Conn))
             {
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@email", user.Email);
                 command.Parameters.AddWithValue("@pass", user.Pass);
                 command.Parameters.AddWithValue("@displayname", user.DisplayName);
-                command.Parameters.AddWithValue("@ispublic", conv);
+                command.Parameters.AddWithValue("@isconfirmed", conv);
 
                 try
                 {
@@ -134,7 +129,7 @@ namespace LionFishWeb.Repositories
                     read.GetOrdinal("displayname");
                     read.GetOrdinal("profileimg");
                     read.GetOrdinal("profilebio");
-                    read.GetOrdinal("ispublic");
+                    read.GetOrdinal("isconfirmed");
                     // read.GetOrdinal("friendlist");
 
                     while (read.Read())
@@ -179,7 +174,7 @@ namespace LionFishWeb.Repositories
                     read.GetOrdinal("displayname");
                     read.GetOrdinal("profileimg");
                     read.GetOrdinal("profilebio");
-                    read.GetOrdinal("ispublic");
+                    read.GetOrdinal("isconfirmed");
                     // read.GetOrdinal("friendlist");
 
                     while (read.Read())
@@ -206,6 +201,38 @@ namespace LionFishWeb.Repositories
         public List<User> GetUsersByGroup(int groupid)
         {
             throw new NotImplementedException();
+        }
+
+        public bool UpdateUser(User user)
+        {
+            int conv;
+            if (user.IsConfirmed) conv = 1;
+            else conv = 0;
+
+            string query = "update user set email = @email, pass = @pass, displayname = @displayname, profileimg = @profileimg, profilebio = @profilebio, isconfirmed = @isconfirmed where userid = @userid";
+            using (MySqlConnection connection = new MySqlConnection(Constants.Conn))
+            {
+                MySqlCommand command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@email", user.Email);
+                command.Parameters.AddWithValue("@pass", user.Pass);
+                command.Parameters.AddWithValue("@displayname", user.DisplayName);
+                command.Parameters.AddWithValue("@profileimg", user.ProfileImg);
+                command.Parameters.AddWithValue("@profilebio", user.ProfileBio);
+                command.Parameters.AddWithValue("@isconfirmed", conv);
+                command.Parameters.AddWithValue("@userid", user.UserId);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

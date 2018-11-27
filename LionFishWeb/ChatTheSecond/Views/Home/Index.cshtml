@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.0.js"></script>
+    <script src="~/signalr/js"></script>
+    <script src="~/Scripts/SignalR.js"></script>
+    <script src="~/Scripts/signalr/hubs"></script>
+
+}
+
+    <section style="position:relative;width:500px;height:600px;padding:15px;overflow-x:auto;overflow-y:scroll;">
+        
+        <p id="NewMessage"></p>
+    </section>
+    <section style="overflow:auto;height:80px;width:500px;align-content:center;vertical-align:middle;">
+        <input type="text" style="width:calc(100% - 120px);height:40px;margin:0;max-width:100%;" id="area" value="" />
+        <input type="button" style="position:absolute;display:inline;width:100px;height:40px;" id="sendText" value="send nudes" />
+        <p style="font-size:10px;visibility:hidden;" id="CharLeft"></p>
+    </section>

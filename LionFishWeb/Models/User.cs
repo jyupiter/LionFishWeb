@@ -62,13 +62,6 @@ namespace LionFishWeb.Models
             }
         }
 
-        public bool GoodPass(int strength)
-        {
-            if (strength > 1)
-                return true;
-            return false;
-        }
-
         public bool AuthUser(User user, string test)
         {
             try

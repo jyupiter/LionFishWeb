@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jint;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace LionFishWeb.Utility
     public static class Constants
     {
         public static string Conn => ConfigurationManager.ConnectionStrings["conn"].ConnectionString;
+        public const string captchaSecret = "6LcPQ30UAAAAABFqqSAazpaMGWObvP6lCuSZggbR";
 
         private static readonly int SaltLengthLimit = 16;
         private static byte[] GetSalt()
@@ -34,6 +36,26 @@ namespace LionFishWeb.Utility
             Array.Copy(salt, 0, hbyt, 0, 16);
             Array.Copy(hash, 0, hbyt, 16, 20);
             return Convert.ToBase64String(hbyt);
+        }
+        public static int ZXCVBN(string p)
+        {
+            var s = System.IO.File.ReadAllText("C:/Users/Jupiter/source/repos/LionFishWeb/LionFishWeb/Scripts/zxcvbn.js");
+            int x = 10;
+
+            var engine = new Engine();
+            var al = new System.Collections.ArrayList(2)
+            {
+                x,
+                p
+            };
+            engine.SetValue("al", al);
+            engine.Execute(s);
+            engine.Execute(@"
+                var z = zxcvbn(al[1]);
+                al[0] = z.score;
+            ");
+
+            return Convert.ToInt16(al[0]);
         }
     }
 }

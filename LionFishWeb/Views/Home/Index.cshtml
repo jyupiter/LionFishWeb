@@ -5,58 +5,12 @@
 }
 
 <main>
-    <section id="logsign">
-        <div class="ungriddy">
-            <div id="block-sign" class="block-logsign">
-                <h1>Get started with a new account<span style="color:#EDA831;">.</span></h1>
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <div>
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "input-sign-email", @class = "input-email", placeholder = "Email address" } })
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </div>
-                    <div class="block-password">
-                        @Html.PasswordFor(model => model.Pass, new { id = "input-sign-password", @class = "input-password", placeholder = "Password (min. 10 characters)" })
-                        <div class="show-password hide">Show</div>
-                    </div>
-
-                    <div>
-                        <input formaction=@Url.Action("SignUpAsync") formmethod="post" type="submit" id="submit-sign" class="button-blue" value="Sign up">
-                        <input type="submit" value="Alternative">
-                    </div>
-                }
-            </div>
-            <div id="block-log" class="block-logsign">
-                <h1>Existing user? Log in<span style="color:#EDA831;">.</span></h1>
-                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-                    <div>
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { id = "input-log-email", @class = "input-email", placeholder = "Email address" } })
-                    </div>
-                    <div class="block-password">
-                        @Html.PasswordFor(model => model.Pass, new { id = "input-log-password", @class = "input-password", placeholder = "Password" })
-                        <div class="show-password hide">Show</div>
-                    </div>
-
-                    <div>
-                        <input formaction=@Url.Action("LogIn") formmethod="post" type="submit" id="submit-log" class="button-black" value="Log in">
-                        <input type="submit" value="Forgot password">
-                    </div>
-                }
-            </div>
-        </div>
-        <div class="griddy"></div>
-    </section>
-    <section id="huge">
+    <section id="huge" class="sect-index">
         <h1>Organize your life<span style="color:#EDA831;">.</span></h1>
         <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
         <a class="button button-black getstarted">Get started</a>
     </section>
-    <section class="move">
+    <section class="move sect-index">
         <img src="https://static1.squarespace.com/static/58d01cb9197aeaebf74f0616/t/58d27d6646c3c49a233fb2eb/1490189671128/gray-bg-light.png" />
         <div>
             <h2>Hello, world!</h2>
@@ -64,7 +18,7 @@
             <a class="button" asp-page="/Index">Action</a>
         </div>
     </section>
-    <section class="move">
+    <section class="move sect-index">
         <img src="https://static1.squarespace.com/static/58d01cb9197aeaebf74f0616/t/58d27d6646c3c49a233fb2eb/1490189671128/gray-bg-light.png" />
         <div>
             <h2>Hello, world!</h2>
@@ -72,7 +26,7 @@
             <a class="button" asp-page="/Index">Action</a>
         </div>
     </section>
-    <section class="move">
+    <section class="move sect-index">
         <img src="https://static1.squarespace.com/static/58d01cb9197aeaebf74f0616/t/58d27d6646c3c49a233fb2eb/1490189671128/gray-bg-light.png" />
         <div>
             <h2>Hello, world!</h2>
@@ -80,7 +34,7 @@
             <a class="button" asp-page="/Index">Action</a>
         </div>
     </section>
-    <section class="move">
+    <section class="move sect-index">
         <img src="https://static1.squarespace.com/static/58d01cb9197aeaebf74f0616/t/58d27d6646c3c49a233fb2eb/1490189671128/gray-bg-light.png" />
         <div>
             <h2>Hello, world!</h2>

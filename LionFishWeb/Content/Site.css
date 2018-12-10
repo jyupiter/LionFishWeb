@@ -1,7 +1,7 @@
 ﻿/* Basics */
 
 * {
-    box-sizing:border-box;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
@@ -20,12 +20,12 @@ a, a:hover, a:visited, a:target {
     user-select: none;
 }
 
-a:active {
-    color: #EDA831;
-}
+    a:active {
+        color: #EDA831;
+    }
 
 hr {
-    width:100%;
+    width: 100%;
     border: none;
     border-bottom: 1px solid #d5d5d5;
 }
@@ -40,8 +40,8 @@ p {
 }
 
 main {
-    margin-top:56px;
-    min-height:calc(100vh - 231px);
+    margin-top: 56px;
+    min-height: calc(100vh - 231px);
 }
 
 img {
@@ -53,8 +53,8 @@ img {
 }
 
 .hide {
-    display: none!important;
-    opacity: 0!important;
+    display: none !important;
+    opacity: 0 !important;
 }
 
 /* Buttons */
@@ -76,8 +76,12 @@ img {
     -o-transition: all 0.2s ease-in-out;
 }
 
-.button:hover {
-    background:#555;
+    .button:hover {
+        background: #555;
+    }
+
+#getstarted {
+    border: 1px solid #fff;
 }
 
 input[type="submit"] {
@@ -97,9 +101,9 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-input[type="submit"]:hover {
-    background:#d5d5d5;
-}
+    input[type="submit"]:hover {
+        background: #d5d5d5;
+    }
 
 input[type="submit"] {
     font-size: 14px;
@@ -108,17 +112,17 @@ input[type="submit"] {
 }
 
 .button-blue {
-    background: blue!important;
-    color: #fff!important;
+    background: blue !important;
+    color: #fff !important;
     transition: all 0.2s ease-in-out;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
 }
 
-.button-blue:hover {
-    background: black!important;
-}
+    .button-blue:hover {
+        background: black !important;
+    }
 
 .button-orange {
     background: #EDA831 !important;
@@ -129,9 +133,9 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-.button-orange:hover {
-    background: black !important;
-}
+    .button-orange:hover {
+        background: black !important;
+    }
 
 .button-black {
     background: #000 !important;
@@ -142,9 +146,9 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-.button-black:hover {
-    background: blue !important;
-}
+    .button-black:hover {
+        background: blue !important;
+    }
 
 /* Navigation bar */
 
@@ -177,40 +181,40 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-#lionfish:after {
-    content:'.';
-    position: absolute;
-    bottom: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
-    font-weight: bold;
-    line-height: 1em;
-    vertical-align: middle;
-    color: #EDA831;
-}
+    #lionfish:after {
+        content: '.';
+        position: absolute;
+        bottom: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 1em;
+        vertical-align: middle;
+        color: #EDA831;
+    }
 
 #snb {
-    float:right;
+    float: right;
 }
 
-#snb a {
-    margin: 0 0 0 10px;
-    border-radius: 15px;
-    font-weight: bold;
-}
+    #snb a {
+        margin: 0 0 0 10px;
+        border-radius: 15px;
+        font-weight: bold;
+    }
 
 /* Index/login page */
 
-section {
+.sect-index {
     padding: 35px;
 }
 
-section .button {
-    background: #e8e8e8;
-    font-size: 14px;
-    padding: 8px 14px;
-    margin: 10px 5px 0 0;
-}
+    .sect-index .button {
+        background: #e8e8e8;
+        font-size: 14px;
+        padding: 8px 14px;
+        margin: 10px 5px 0 0;
+    }
 
 .move {
     position: relative;
@@ -221,27 +225,27 @@ section .button {
     overflow: auto;
 }
 
-.move img {
-    float:left;
-    max-width:230px;
-    height:auto;
-    border-radius: 15px;
-}
+    .move img {
+        float: left;
+        max-width: 230px;
+        height: auto;
+        border-radius: 15px;
+    }
 
-.move img + div {
-    float:left;
-    margin:0 0 0 35px;
-    max-width:calc(100% - 265px);
-}
+        .move img + div {
+            float: left;
+            margin: 0 0 0 35px;
+            max-width: calc(100% - 265px);
+        }
 
-.move h2 {
-    font-size:34px;
-}
+    .move h2 {
+        font-size: 34px;
+    }
 
-.move p {
-    line-height:1.4em;
-    font-size:24px;
-}
+    .move p {
+        line-height: 1.4em;
+        font-size: 24px;
+    }
 
 #huge {
     background: rgba(216,226,243,1);
@@ -255,27 +259,27 @@ section .button {
     margin-bottom: 25px;
 }
 
-#huge h1 {
-    font-size:80px;
-}
+    #huge h1 {
+        font-size: 80px;
+    }
 
-#huge p {
-    font-size:30px;
-    max-width:800px;
-}
+    #huge p {
+        font-size: 30px;
+        max-width: 800px;
+    }
 
 @media screen and (max-width: 1000px) {
     #huge {
         padding: 25vh 25px 50px 25px;
     }
 
-    #huge h1 {
-        font-size: 60px;
-    }
+        #huge h1 {
+            font-size: 60px;
+        }
 
-    #huge p {
-        font-size: 27.5px;
-    }
+        #huge p {
+            font-size: 27.5px;
+        }
 
     .move {
         margin: 25px;
@@ -283,14 +287,14 @@ section .button {
         overflow: auto;
     }
 
-     .move h2 {
-        font-size: 28px;
-     }
+        .move h2 {
+            font-size: 28px;
+        }
 
-     .move p {
-         line-height: 1.4em;
-         font-size: 20px;
-     }
+        .move p {
+            line-height: 1.4em;
+            font-size: 20px;
+        }
 }
 
 @media screen and (max-width: 675px) {
@@ -298,50 +302,50 @@ section .button {
         padding: 20vh 25px 25px 25px;
     }
 
-    #huge h1 {
-        font-size:40px;
-    }
+        #huge h1 {
+            font-size: 40px;
+        }
 
-    #huge p {
-        font-size: 25px;
-    }
+        #huge p {
+            font-size: 25px;
+        }
 
     .move {
-        box-shadow:0 0 0 transparent;
-        border-bottom:1px solid #dfdfdf;
-        border-radius:0;
+        box-shadow: 0 0 0 transparent;
+        border-bottom: 1px solid #dfdfdf;
+        border-radius: 0;
         margin: 40px 20px;
         padding: 0 20px 40px 20px;
     }
 
-    .move:nth-child(n-1) {
-        border-bottom:none;
-        padding: 0 20px 10px 20px;
-    }
+        .move:nth-child(n-1) {
+            border-bottom: none;
+            padding: 0 20px 10px 20px;
+        }
 
-    .move img {
-        float: left;
-        max-width: 100%;
-        height: auto;
-    }
+        .move img {
+            float: left;
+            max-width: 100%;
+            height: auto;
+        }
 
-    .move img + div {
-        float: left;
-        margin: 20px 0 0 0;
-        max-width: 100%;
-    }
+            .move img + div {
+                float: left;
+                margin: 20px 0 0 0;
+                max-width: 100%;
+            }
 
-    .move h2 {
-        font-size: 28px;
-    }
+        .move h2 {
+            font-size: 28px;
+        }
 
-    .move p {
-        font-size: 20px;
-    }
+        .move p {
+            font-size: 20px;
+        }
 }
 
 footer {
-    bottom:0;
+    bottom: 0;
     margin-top: 55px;
     width: 100%;
     height: 120px;
@@ -353,7 +357,6 @@ footer {
 /* Login */
 
 #logsign {
-    display:none;
     position: fixed;
     background: #f9f9f9;
     width: 100%;
@@ -363,7 +366,7 @@ footer {
     left: 0;
     right: 0;
     padding: 35px 0 0 35px;
-    overflow:scroll;
+    overflow: scroll;
 }
 
 .block-logsign {
@@ -377,9 +380,9 @@ footer {
 }
 
 .griddy {
-    background:#d5d5d5;
-    height:calc(100% + 35px);
-    margin:-35px 0 0 35px;
+    background: #d5d5d5;
+    height: calc(100% + 35px);
+    margin: -35px 0 0 35px;
     width: calc(100% - 370px);
 }
 
@@ -403,7 +406,7 @@ input[type=text], input[type=email], input[type=password], select {
     bottom: 36%;
     right: 10px;
     font-size: 11px;
-    text-transform:uppercase;
+    text-transform: uppercase;
     color: #aaa;
     cursor: pointer;
 }
@@ -418,7 +421,36 @@ input[type=text], input[type=email], input[type=password], select {
 }
 
 .error {
-    color:indianred;
+    color: indianred;
+}
+
+#tip-strength {
+    width: 310px;
+    vertical-align: middle;
+}
+
+    #tip-strength p {
+        float: left;
+        padding: 0;
+        margin: 0;
+    }
+
+#strength-color {
+    float: left;
+    border-radius: 100%;
+    background: black;
+    width: 10px;
+    height: 10px;
+    margin: 7px 12px 0 0;
+}
+
+#strength-title {
+    float: left;
+    margin: 3px 0 0 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-family: consolas;
+    font-size: 13px;
 }
 
 /* Landing */
@@ -437,11 +469,11 @@ input[type=text], input[type=email], input[type=password], select {
     overflow: scroll;
 }
 
-#conf-email {
-    max-width:330px;
+#conf-email, #conf-reset {
+    max-width: 330px;
 }
 
-#conf-email img {
-    max-width:100%;
-    height:auto;
-}
+    #conf-email img, #conf-reset img {
+        max-width: 100%;
+        height: auto;
+    }

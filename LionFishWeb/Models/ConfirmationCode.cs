@@ -10,14 +10,16 @@ namespace LionFishWeb.Models
     {
         public string Code { get; set; }
         public string Email { get; set; }
+        public bool IsPasswordReset { get; set; }
         public DateTime Date { get; set; }
 
         public ConfirmationCode() { }
 
-        public ConfirmationCode(string email)
+        public ConfirmationCode(string email, bool ispr)
         {
             Code = Connect();
             Email = email;
+            IsPasswordReset = ispr;
         }
 
         private string GenerateSegment()

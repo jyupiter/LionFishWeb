@@ -12,12 +12,17 @@ namespace LionFishWeb.Repositories
     {
         public bool AddConfirmationCode(ConfirmationCode cc)
         {
-            string query = "insert into confirmationcode(code, email) values (@code, @email)";
+            int conv;
+            if (cc.IsPasswordReset) conv = 1;
+            else conv = 0;
+
+            string query = "insert into confirmationcode(code, email, ispasswordreset) values (@code, @email, @ispasswordreset)";
             using (MySqlConnection connection = new MySqlConnection(Constants.Conn))
             {
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@code", cc.Code);
                 command.Parameters.AddWithValue("@email", cc.Email);
+                command.Parameters.AddWithValue("@ispasswordreset", conv);
 
                 try
                 {
@@ -71,12 +76,14 @@ namespace LionFishWeb.Repositories
 
                     read.GetOrdinal("code");
                     read.GetOrdinal("email");
+                    read.GetOrdinal("ispasswordreset");
                     read.GetOrdinal("date");
 
                     while (read.Read())
                     {
                         cc.Code = read.GetString("code");
                         cc.Email = read.GetString("email");
+                        cc.IsPasswordReset = Convert.ToBoolean(read.GetInt16("ispasswordreset"));
                         cc.Date = read.GetDateTime("date");
                     }
                     return cc;

@@ -3,9 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/tippy.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -14,7 +15,7 @@
         <div id="snb">
             @Html.ActionLink("About", "About", "Home", null, new { @class = "button" })
             @Html.ActionLink("Help", "Help", "Home", null, new { @class = "button" })
-            <a class="button getstarted" style="border:1px solid #fff;">get started</a>
+            @Html.ActionLink("Get started", "SignUp", "Home", new { area = "" }, new { id = "getstarted", @class = "button" })
         </div>
     </nav>
     <div class="content">
@@ -23,6 +24,9 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/Index.js")
+    @Scripts.Render("~/Scripts/tippy.js")
+    @Scripts.Render("~/Scripts/zxcvbn.js")
     @RenderSection("scripts", required: false)
+    <script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
 </body>
 </html>

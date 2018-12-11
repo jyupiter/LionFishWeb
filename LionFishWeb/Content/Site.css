@@ -20,9 +20,9 @@ a, a:hover, a:visited, a:target {
     user-select: none;
 }
 
-    a:active {
-        color: #EDA831;
-    }
+a:active {
+    color: #EDA831;
+}
 
 hr {
     width: 100%;
@@ -76,9 +76,9 @@ img {
     -o-transition: all 0.2s ease-in-out;
 }
 
-    .button:hover {
-        background: #555;
-    }
+.button:hover {
+    background: #555;
+ }
 
 #getstarted {
     border: 1px solid #fff;
@@ -101,9 +101,9 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-    input[type="submit"]:hover {
-        background: #d5d5d5;
-    }
+input[type="submit"]:hover {
+    background: #d5d5d5;
+}
 
 input[type="submit"] {
     font-size: 14px;
@@ -120,9 +120,9 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-    .button-blue:hover {
-        background: black !important;
-    }
+.button-blue:hover {
+    background: black !important;
+ }
 
 .button-orange {
     background: #EDA831 !important;
@@ -133,9 +133,9 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-    .button-orange:hover {
-        background: black !important;
-    }
+.button-orange:hover {
+    background: black !important;
+}
 
 .button-black {
     background: #000 !important;
@@ -146,9 +146,9 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-    .button-black:hover {
-        background: blue !important;
-    }
+.button-black:hover {
+    background: blue !important;
+}
 
 /* Navigation bar */
 
@@ -181,17 +181,17 @@ input[type="submit"] {
     -o-transition: all 0.2s ease-in-out;
 }
 
-    #lionfish:after {
-        content: '.';
-        position: absolute;
-        bottom: 15px;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 25px;
-        font-weight: bold;
-        line-height: 1em;
-        vertical-align: middle;
-        color: #EDA831;
-    }
+#lionfish:after {
+    content: '.';
+    position: absolute;
+    bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1em;
+    vertical-align: middle;
+    color: #EDA831;
+}
 
 #snb {
     float: right;

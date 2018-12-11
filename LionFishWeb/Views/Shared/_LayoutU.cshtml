@@ -14,18 +14,17 @@
     <nav id="sitenav">
         @Html.ActionLink("LionFish", "Index", "Home", new { area = "" }, new { id = "lionfish", @class = "" })
         <div id="snb">
-            @Html.ActionLink("About", "About", "Home", null, new { @class = "button" })
+            @Html.ActionLink("Help", "Help", "Home", null, new { @class = "button" })
             @Html.ActionLink("Get started", "SignUp", "Home", new { area = "" }, new { id = "getstarted", @class = "button" })
         </div>
     </nav>
     <div class="content">
         @RenderBody()
     </div>
-
+    s
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Scripts/Index.js")
     @Scripts.Render("~/Scripts/tippy.js")
-    @Scripts.Render("~/Scripts/zxcvbn.js")
     @RenderSection("scripts", required: false)
     <script src='https://www.google.com/recaptcha/api.js' type="text/javascript"></script>
 </body>

@@ -1,20 +1,4 @@
 ﻿$(function () {
-    $("section:not(#logsign)").toggle();
-    $("#logsign").toggle();
-
-    $(".getstarted").on("click", function () {
-        $("section:not(#logsign)").toggle();
-        $("#logsign").toggle();
-        $("#sitenav").toggleClass("sitenavflip");
-        $("#lionfish").toggleClass("lionfishflip");
-        $("#snb a:not(last-child)").toggleClass("button-black");
-        $("#snb a:last-child").toggleClass("button-blue");
-        $("#snb a:last-child").toggleClass("button-blue");
-        if ($("#snb a:last-child").text() === "get started")
-            $("#snb a:last-child").text("back to home");
-        else
-            $("#snb a:last-child").text("get started");
-    });
 
     $(".input-email").on("keyup", function () {
         $('span.error-invalid-email').hide();
@@ -25,12 +9,43 @@
         }
     });
 
-    $("#input-sign-password").on("keyup", function () {
-        $('span.error-invalid-password').hide();
-        var v = $(this).val();
-        if (v.length < 10 && v.length > 0) {
-            $(this).parent().after('<span class="error error-invalid-password">Your password is too short!</span>');
+    function intToZXC(i) {
+        var res = [];
+        switch (i) {
+            case 0:
+                res[0] = "extremely weak. will be rejected";
+                res[1] = "black";
+                break;
+            case 1:
+                res[0] = "very weak. will be rejected";
+                res[1] = "red";
+                break;
+            case 2:
+                res[0] = "weak";
+                res[1] = "orange";
+                break;
+            case 3:
+                res[0] = "moderate";
+                res[1] = "yellowgreen";
+                break;
+            case 4:
+                res[0] = "strong";
+                res[1] = "limegreen";
+                break;
+            default:
+                res[0] = "extremely weak";
+                res[1] = "black";
         }
+        return res;
+    }
+
+    $("#input-sign-password").on("keyup", function () {
+        var inp = $("#input-sign-password").val();
+        var x = zxcvbn(inp);
+        var uhh = intToZXC(x.score);
+        $("#strength-color").css("background-color", uhh[1]);
+        $("#strength-title").text(uhh[0]);
+        $("#strength-desc").text("This will be cracked in " + x.crack_times_display.offline_slow_hashing_1e4_per_second + ". " + x.feedback.warning);
     });
 
     $(".input-password").on("keyup", function () {
@@ -42,15 +57,30 @@
         }
     });
 
+    tippy('#input-sign-password', {
+        content: "<div id='tip-strength'><p><div id='strength-color'></div><span id='strength-title'>extremely weak</span><br><span id='strength-desc'></span></p></div>",
+        delay: 100,
+        arrow: true,
+        placement: 'top-start',
+        interactive: false,
+        arrow: false,
+        trigger: 'click',
+        size: 'large',
+        theme: 'light',
+        duration: 100,
+        animation: 'fade'
+    });
+
     $(".show-password").on("click", function () {
+        var huh = $(this).text();
         var x = $(this).prev();
         if (x.attr("type") === "password") {
             x.prop("type", "text");
+            $(this).text("hide");
         } else {
             x.prop("type", "password");
+            $(this).text("show");
         }
     });
-
-    $("#submit-password")
 
 });

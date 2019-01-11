@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -9,6 +10,7 @@ namespace LionFishWeb.Models
     {
         public int NoteID { get; set; }
         public string Title { get; set; }
+        [Required]
         public string Content { get; set; }
         public List<List<String>> BackUp { get; set; }
         // public string Style { get; set; }

@@ -24,11 +24,10 @@ namespace LionFishWeb.Controllers
             {
                 return View("~/Views/Home/LogIn.cshtml");
             }   
-            else
-                return View();
+            return View();
         }
 
-        [HttpPost][ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult SubmitCode([Bind(Include = "Code, Email")] ConfirmationCode en)
         {
             IUserRepo ur = new UserRepo();

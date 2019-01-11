@@ -207,14 +207,15 @@ input[type="submit"] {
 
 .sect-index {
     padding: 35px;
+    margin-left:20px;
 }
 
-    .sect-index .button {
-        background: #e8e8e8;
-        font-size: 14px;
-        padding: 8px 14px;
-        margin: 10px 5px 0 0;
-    }
+.sect-index .button {
+    background: #e8e8e8;
+    font-size: 14px;
+    padding: 8px 14px;
+    margin: 10px 5px 0 0;
+}
 
 .move {
     position: relative;

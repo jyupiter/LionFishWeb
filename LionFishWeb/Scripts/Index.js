@@ -60,7 +60,6 @@
     tippy('#input-sign-password', {
         content: "<div id='tip-strength'><p><div id='strength-color'></div><span id='strength-title'>extremely weak</span><br><span id='strength-desc'></span></p></div>",
         delay: 100,
-        arrow: true,
         placement: 'top-start',
         interactive: false,
         arrow: false,

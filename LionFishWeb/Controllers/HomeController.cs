@@ -15,7 +15,7 @@ namespace LionFishWeb.Controllers
     {
         public ActionResult Index()
         {
-            return View("SignUp");
+            return View();
         }
 
         public ActionResult About()
@@ -53,7 +53,7 @@ namespace LionFishWeb.Controllers
             return View();
         }
 
-        [HttpPost][ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SignUpAsync([Bind(Include = "Email, Pass")] User user)
         {
             if (ModelState.IsValid)
@@ -74,14 +74,12 @@ namespace LionFishWeb.Controllers
                         cc = cr.GetConfirmationCode(user.Email);
                     return View("~/Views/User/ConfirmEmail.cshtml", cc);
                 }
-                else
-                    return View("~/Views/Home/SignUp.cshtml");
+                return View("~/Views/Home/SignUp.cshtml", user);
             }
-            else
-                return View("~/Views/Home/SignUp.cshtml");
+            return View("~/Views/Home/SignUp.cshtml", user);
         }
 
-        [HttpPost][ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult LogIn([Bind(Include = "Email, Pass")] User user)
         {
             var response = Request["g-recaptcha-response"];
@@ -108,20 +106,24 @@ namespace LionFishWeb.Controllers
                             Session.Add("CurrentUser", u);
                             return RedirectToAction("Landing", "User");
                         }
-                        else
-                            return View("~/Views/Home/LogIn.cshtml");
+                        return View("~/Views/Home/LogIn.cshtml");
                     }
                 }
                 return View("~/Views/Home/SignUp.cshtml");
             }
-            else
-                return View("~/Views/Home/LogIn.cshtml");
+            return View("~/Views/Home/LogIn.cshtml");
         }
         
-        [HttpPost][ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> SubmitEmailAsync([Bind(Include = "Email")] ConfirmationCode em)
         {
-            if (ModelState.IsValid)
+            var response = Request["g-recaptcha-response"];
+            string secretKey = Constants.captchaSecret;
+            var client = new WebClient();
+            var result = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secretKey, response));
+            var obj = JObject.Parse(result);
+            var status = (bool)obj.SelectToken("success");
+            if (ModelState.IsValid && status)
             {
                 IUserRepo ur = new UserRepo();
                 if (ur.CheckUserByEmail(em.Email))
@@ -130,26 +132,32 @@ namespace LionFishWeb.Controllers
                     ConfirmationCode cc = new ConfirmationCode(em.Email, true);
                     cr.AddConfirmationCode(cc);
                     await EmailSender.Activate(em.Email, cc.Code, "Reset your password");
+                    return View("~/Views/Home/ConfirmPasswordReset.cshtml", cc);
                 }
+                em.Code = null;
+                return View("~/Views/Home/ConfirmPasswordReset.cshtml", em);
             }
-            return View("~/Views/Home/ConfirmPasswordReset.cshtml", em);
+            return View("~/Views/Home/ForgotPassword.cshtml");
         }
 
-        [HttpPost][ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult SubmitCode([Bind(Include = "Code, Email")] ConfirmationCode en)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && !String.IsNullOrWhiteSpace(en.Code))
             {
                 IUserRepo ur = new UserRepo();
                 IConfirmationCodeRepo cr = new ConfirmationCodeRepo();
-                ConfirmationCode cc = cr.GetConfirmationCode(en.Email);
-                if (cc.IsPasswordReset && en.Code.Equals(cc.Code))
+                if (cr.CheckConfirmationCodeByEmail(en.Email))
                 {
-                    User u = ur.GetUserByEmail(en.Email);
-                    cr.DeleteConfirmationCode(en.Email);
-                    return View("~/Views/Home/ResetPassword.cshtml", u);
+                    ConfirmationCode cc = cr.GetConfirmationCode(en.Email);
+                    if (cc.IsPasswordReset && en.Code.Equals(cc.Code))
+                    {
+                        User u = ur.GetUserByEmail(en.Email);
+                        cr.DeleteConfirmationCode(en.Email);
+                        return View("~/Views/Home/ResetPassword.cshtml", u);
+                    }
+                    return View("~/Views/Home/ConfirmPasswordReset.cshtml", en);
                 }
-                return View("~/Views/Home/ConfirmPasswordReset.cshtml", en);
             }
             return View("~/Views/Home/ConfirmPasswordReset.cshtml", en);
         }
@@ -161,7 +169,7 @@ namespace LionFishWeb.Controllers
                 await EmailSender.Activate(cc.Email, cc.Code, "Reset your password");
         }
 
-        [HttpPost][ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult UpdatePassword([Bind(Include = "Email, Pass")] User u)
         {
             if (ModelState.IsValid)

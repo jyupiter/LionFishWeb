@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.IO;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace LionFishWeb.Models
 {
-    public class User
+    public class User : IdentityUser
     {
         public int UserId { get; set; }
-        [Required][EmailAddress][RegularExpression(@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "E-mail is not valid")]
-        public string Email { get; set; }
         [Required]
         public string Pass { get; set; }
         public DateTime SignedUp { get; set; }
@@ -22,8 +21,8 @@ namespace LionFishWeb.Models
         public bool IsConfirmed { get; set; }
 
         public List<int> FriendList { get; set; }
-        // public List<Group> GroupList { get; set; }
-        // public List<Group> EventList { get; set; }
+        public List<int> GroupList { get; set; }
+        public List<int> EventList { get; set; }
 
         public User() { }
 

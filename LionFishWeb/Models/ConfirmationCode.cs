@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Security.Cryptography;
+using System.ComponentModel.DataAnnotations;
 
 namespace LionFishWeb.Models
 {
     public class ConfirmationCode
     {
+        [Required]
         public string Code { get; set; }
+        [Required, EmailAddress, RegularExpression(@"^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
         public bool IsPasswordReset { get; set; }
         public DateTime Date { get; set; }
